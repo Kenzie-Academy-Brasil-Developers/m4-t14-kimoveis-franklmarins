@@ -11,7 +11,7 @@ const createUserController = async (request: Request, response: Response) => {
 
   const newUser = await createUserService(userData);
 
-  return response.status(200).json(newUser);
+  return response.status(201).json(newUser);
 };
 
 const listUsersController = async (request: Request, response: Response) => {
