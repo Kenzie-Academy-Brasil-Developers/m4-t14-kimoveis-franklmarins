@@ -2,6 +2,7 @@ import { Router } from "express";
 
 import {
   createUserController,
+  deleteUserController,
   editUserController,
   listUsersController,
 } from "../controllers/user.controllers";
@@ -35,5 +36,10 @@ userRouters.patch(
   assureIdExistsMiddlewares,
   editUserController
 );
+
+userRouters.delete("/:id", assureTokeIsValidMiddleware,
+  assureIdExistsMiddlewares,
+  assureAdminIsTrueMiddleware,
+  deleteUserController)
 
 export default userRouters;
