@@ -1,4 +1,13 @@
-import { Column, CreateDateColumn, Entity, JoinColumn, ManyToOne, OneToOne, PrimaryGeneratedColumn, UpdateDateColumn } from "typeorm";
+import {
+  Column,
+  CreateDateColumn,
+  Entity,
+  JoinColumn,
+  ManyToOne,
+  OneToOne,
+  PrimaryGeneratedColumn,
+  UpdateDateColumn,
+} from "typeorm";
 
 import { Address } from "./address.entity";
 import { Category } from "./category.entity";
@@ -8,8 +17,8 @@ export class RealEstate {
   @PrimaryGeneratedColumn("increment")
   id: number;
 
-  @Column({ type: "boolean", default: false })
-  sold: boolean;
+  @Column({ type: "boolean", default: true })
+  sold: boolean = false;
 
   @Column({ type: "decimal", precision: 12, scale: 2, default: 0 })
   value: number | string;
@@ -25,8 +34,8 @@ export class RealEstate {
 
   @OneToOne(() => Address)
   @JoinColumn()
-  address: number;
+  address: Address | null;
 
   @ManyToOne(() => Category, { nullable: true })
-  category: Category;
+  category: Category | null;
 }

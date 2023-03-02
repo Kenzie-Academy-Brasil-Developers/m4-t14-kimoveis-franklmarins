@@ -9,10 +9,10 @@ export class Schedule {
   id: number;
 
   @Column({ type: "date" })
-  date: Date;
+  date: string;
 
   @Column({ type: "time" })
-  hour: Date;
+  hour: string;
 
   @ManyToOne(() => RealEstate)
   realEstate: RealEstate;

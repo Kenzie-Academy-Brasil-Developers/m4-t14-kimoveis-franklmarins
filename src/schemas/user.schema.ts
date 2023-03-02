@@ -4,7 +4,7 @@ import { z } from "zod";
 const createUserSchema = z.object({
   name: z.string().max(45),
   email: z.string().email().max(45),
-  admin: z.boolean().default(false),
+  admin: z.boolean().default(false).optional(),
   password: z
     .string()
     .max(120)
