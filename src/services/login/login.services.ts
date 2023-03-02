@@ -1,9 +1,11 @@
 import { compare } from "bcryptjs";
 import jwt from "jsonwebtoken";
+
 import { AppDataSource } from "../../data-source";
 import { User } from "../../entities";
 import { AppError } from "../../error";
 import { iLogin, iUserRepository } from "../../interfaces";
+
 import "dotenv/config";
 
 const loginService = async (loginData: iLogin): Promise<string> => {
@@ -14,13 +16,13 @@ const loginService = async (loginData: iLogin): Promise<string> => {
   });
 
   if (!user) {
-    throw new AppError("Wrong email or password", 401);
+    throw new AppError("Invalid credentials", 401);
   }
 
   const passwordCompare = await compare(loginData.password, user.password);
 
   if (!passwordCompare) {
-    throw new AppError("Wrong email or password", 401);
+    throw new AppError("Invalid credentials", 401);
   }
 
   const token: string = jwt.sign(

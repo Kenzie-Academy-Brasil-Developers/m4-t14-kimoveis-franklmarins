@@ -1,13 +1,15 @@
 import { Router } from "express";
+
 import {
   createUserController,
+  editUserController,
   listUsersController,
 } from "../controllers/user.controllers";
 import assureAdminIsTrueMiddleware from "../middlewares/assureAdminIsTrue.middleware";
 import assureDataIsValidMiddleware from "../middlewares/assureDataIsValid.middleware";
 import assureEmailExistsMiddlewares from "../middlewares/assureEmailExists.middleware";
 import assureTokeIsValidMiddleware from "../middlewares/assureTokeIsValid.middleware";
-import { createUserSchema } from "../schemas/user.schema";
+import { createUserSchema, updateUserSchema } from "../schemas/user.schema";
 
 const userRouters: Router = Router();
 
@@ -23,6 +25,12 @@ userRouters.get(
   assureTokeIsValidMiddleware,
   assureAdminIsTrueMiddleware,
   listUsersController
+);
+
+userRouters.patch(
+  "/:id",
+  assureDataIsValidMiddleware(updateUserSchema),
+  editUserController
 );
 
 export default userRouters;

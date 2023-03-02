@@ -1,4 +1,5 @@
 import { Request, Response } from "express";
+
 import { iLogin } from "../interfaces";
 import loginService from "../services/login/login.services";
 
@@ -10,7 +11,7 @@ const loginController = async (
 
   const token = await loginService(loginData);
 
-  return response.status(201).json({
+  return response.status(200).json({
     token: token,
   });
 };

@@ -1,9 +1,11 @@
-import {
+import { iLogin } from "./login.interfaces";
+import { iUser, iUserRepository, iUserReturn, iUsersReturn, iUserUpdate } from "./user.interfaces";
+
+export {
   iUser,
   iUserReturn,
   iUserRepository,
   iUsersReturn,
-} from "./user.interfaces";
-import { iLogin } from "./login.interfaces";
-
-export { iUser, iUserReturn, iUserRepository, iUsersReturn, iLogin };
+  iLogin,
+  iUserUpdate,
+};
