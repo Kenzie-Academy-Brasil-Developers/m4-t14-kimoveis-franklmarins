@@ -20,4 +20,6 @@ const returnUserSchema = createUserSchema
   })
   .omit({ password: true });
 
-export { createUserSchema, returnUserSchema };
+const returnArrayUsersSchema = returnUserSchema.array();
+
+export { createUserSchema, returnUserSchema, returnArrayUsersSchema };
