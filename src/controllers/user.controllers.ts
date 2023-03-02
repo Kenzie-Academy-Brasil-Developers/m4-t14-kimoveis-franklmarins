@@ -22,8 +22,10 @@ const listUsersController = async (request: Request, response: Response) => {
 const editUserController = async (request: Request, response: Response) => {
   const userData: iUserUpdate = request.body;
   const userId: number = Number(request.params.id);
+  const tokenUserId: number = request.user.id
+  const isAdmin: boolean = request.user.admin
 
-  const userEdited = await editUserService(userData, userId);
+  const userEdited = await editUserService(userData, userId, tokenUserId, isAdmin);
 
   return response.status(200).json(userEdited);
 };

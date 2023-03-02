@@ -8,6 +8,7 @@ import {
 import assureAdminIsTrueMiddleware from "../middlewares/assureAdminIsTrue.middleware";
 import assureDataIsValidMiddleware from "../middlewares/assureDataIsValid.middleware";
 import assureEmailExistsMiddlewares from "../middlewares/assureEmailExists.middleware";
+import assureIdExistsMiddlewares from "../middlewares/assureIdIsExists.middleware";
 import assureTokeIsValidMiddleware from "../middlewares/assureTokeIsValid.middleware";
 import { createUserSchema, updateUserSchema } from "../schemas/user.schema";
 
@@ -30,6 +31,8 @@ userRouters.get(
 userRouters.patch(
   "/:id",
   assureDataIsValidMiddleware(updateUserSchema),
+  assureTokeIsValidMiddleware,
+  assureIdExistsMiddlewares,
   editUserController
 );
 

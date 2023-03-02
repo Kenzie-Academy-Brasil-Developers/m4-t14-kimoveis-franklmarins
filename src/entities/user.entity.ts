@@ -12,17 +12,17 @@ export class User {
   email: string;
 
   @Column({ type: "boolean", default: false })
-  admin: boolean | undefined;
+  admin: boolean;
 
   @Column({ type: "varchar", length: 120 })
   password: string;
 
-  @CreateDateColumn()
+  @CreateDateColumn({ type: "date" })
   createdAt: string;
 
-  @UpdateDateColumn()
+  @UpdateDateColumn({ type: "date" })
   updatedAt: string;
 
-  @DeleteDateColumn()
+  @DeleteDateColumn({ type: "date" })
   deletedAt: string;
 }
