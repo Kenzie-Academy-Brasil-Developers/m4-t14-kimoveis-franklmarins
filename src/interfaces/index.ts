@@ -12,6 +12,12 @@ import {
   iCategoryRepository,
   iCategoriesReturn,
 } from "./category.interfaces";
+import {
+  iRealEstate,
+  iRealEstateReturn,
+  iRealEstatesReturn,
+  iRealEstateRepository,
+} from "./realEstate.interfaces";
 
 export {
   iUser,
@@ -24,4 +30,8 @@ export {
   iCategoryReturn,
   iCategoryRepository,
   iCategoriesReturn,
+  iRealEstate,
+  iRealEstateReturn,
+  iRealEstatesReturn,
+  iRealEstateRepository,
 };

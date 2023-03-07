@@ -26,16 +26,16 @@ export class RealEstate {
   @Column({ type: "integer" })
   size: number;
 
-  @CreateDateColumn()
+  @CreateDateColumn({ type: "date" })
   createdAt: string;
 
-  @UpdateDateColumn()
+  @UpdateDateColumn({ type: "date" })
   updatedAt: string;
 
   @OneToOne(() => Address)
   @JoinColumn()
   address: Address | null;
 
-  @ManyToOne(() => Category, { nullable: true })
+  @ManyToOne(() => Category, (category) => category.id, { nullable: true })
   category: Category | null;
 }
