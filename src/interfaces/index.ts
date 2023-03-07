@@ -11,6 +11,7 @@ import {
   iCategoryReturn,
   iCategoryRepository,
   iCategoriesReturn,
+  iRealEstateByCategory,
 } from "./category.interfaces";
 import {
   iRealEstate,
@@ -30,6 +31,7 @@ export {
   iCategoryReturn,
   iCategoryRepository,
   iCategoriesReturn,
+  iRealEstateByCategory,
   iRealEstate,
   iRealEstateReturn,
   iRealEstatesReturn,

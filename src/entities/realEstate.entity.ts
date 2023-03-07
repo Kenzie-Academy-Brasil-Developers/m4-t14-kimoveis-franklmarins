@@ -36,6 +36,8 @@ export class RealEstate {
   @JoinColumn()
   address: Address | null;
 
-  @ManyToOne(() => Category, (category) => category.id, { nullable: true })
+  @ManyToOne(() => Category, (category) => category.realEstate, {
+    nullable: true,
+  })
   category: Category | null;
 }

@@ -44,9 +44,7 @@ const createRealEstateService = async (realEstateData: iRealEstate) => {
 
   await realEstateRepository.save(realEstate);
 
-  const newRealEstate = returnRealEstateSchema.parse(realEstate);
-
-  return newRealEstate;
+  return realEstate;
 };
 
 export default createRealEstateService;

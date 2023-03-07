@@ -1,6 +1,6 @@
 import { z } from "zod";
 import { createAddressSchema, returnAddressSchema } from "./address.schema";
-import { createCategorySchema, returnCategorySchema } from "./category.schema";
+import { returnCategorySchema } from "./category.schema";
 
 const createRealEstateSchema = z.object({
   value: z.any().transform((value) => Number(value)),
@@ -30,4 +30,5 @@ export {
   createRealEstateSchema,
   returnRealEstateSchema,
   returnArrayRealEstateSchema,
+  returnRealEstateSchemaArray,
 };
