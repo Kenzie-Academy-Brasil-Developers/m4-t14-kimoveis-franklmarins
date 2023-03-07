@@ -37,9 +37,12 @@ userRouters.patch(
   editUserController
 );
 
-userRouters.delete("/:id", assureTokeIsValidMiddleware,
+userRouters.delete(
+  "/:id",
+  assureTokeIsValidMiddleware,
   assureIdExistsMiddlewares,
   assureAdminIsTrueMiddleware,
-  deleteUserController)
+  deleteUserController
+);
 
 export default userRouters;

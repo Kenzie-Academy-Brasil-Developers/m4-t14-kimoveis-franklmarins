@@ -31,8 +31,7 @@ const loginService = async (loginData: iLogin): Promise<string> => {
     },
     process.env.SECRET_KEY!,
     {
-      expiresIn: process.env.EXPIRES_IN,
-      subject: String(user.id),
+      subject: user.id.toString(),
     }
   );
 
