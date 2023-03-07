@@ -10,6 +10,7 @@ import {
   iCategory,
   iCategoryReturn,
   iCategoryRepository,
+  iCategoriesReturn,
 } from "./category.interfaces";
 
 export {
@@ -22,4 +23,5 @@ export {
   iCategory,
   iCategoryReturn,
   iCategoryRepository,
+  iCategoriesReturn,
 };

@@ -8,4 +8,10 @@ const returnCategorySchema = createCategorySchema.extend({
   id: z.number(),
 });
 
-export { createCategorySchema, returnCategorySchema };
+const returnArrayCategorySchema = returnCategorySchema.array();
+
+export {
+  createCategorySchema,
+  returnCategorySchema,
+  returnArrayCategorySchema,
+};

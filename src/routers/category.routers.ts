@@ -1,5 +1,8 @@
 import { Router } from "express";
-import { createCategoryController } from "../controllers/category.controllers";
+import {
+  createCategoryController,
+  listCaregoryController,
+} from "../controllers/category.controllers";
 import assureAdminIsTrueMiddleware from "../middlewares/assureAdminIsTrue.middleware";
 import assureDataIsValidMiddleware from "../middlewares/assureDataIsValid.middleware";
 import assureTokeIsValidMiddleware from "../middlewares/assureTokeIsValid.middleware";
@@ -14,5 +17,7 @@ categoryRouters.post(
   assureAdminIsTrueMiddleware,
   createCategoryController
 );
+
+categoryRouters.get("", listCaregoryController);
 
 export default categoryRouters;
