@@ -14,13 +14,17 @@ const returnRealEstateSchema = z.object({
   value: z.number(),
   size: z.number().gt(0),
   sold: z.boolean().default(false),
-  createdAt: z.string().transform((value) => new Date(value)),
+  createdAt: z.string(),
   updatedAt: z.string(),
   address: returnAddressSchema,
   category: returnCategorySchema,
 });
 
-const returnArrayRealEstateSchema = returnRealEstateSchema.array();
+const returnRealEstateSchemaArray = returnRealEstateSchema.omit({
+  category: true,
+});
+
+const returnArrayRealEstateSchema = returnRealEstateSchemaArray.array();
 
 export {
   createRealEstateSchema,

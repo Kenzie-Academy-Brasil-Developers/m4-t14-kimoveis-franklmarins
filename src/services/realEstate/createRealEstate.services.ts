@@ -6,10 +6,8 @@ import {
   iCategoryRepository,
   iRealEstate,
   iRealEstateRepository,
-  iRealEstateReturn,
 } from "../../interfaces";
 import { returnRealEstateSchema } from "../../schemas/realEstate.schema";
-import createCategoryService from "../category/category.services";
 
 const createRealEstateService = async (realEstateData: iRealEstate) => {
   const realEstateRepository: iRealEstateRepository =

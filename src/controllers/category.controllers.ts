@@ -1,6 +1,6 @@
 import { Request, Response } from "express";
 import { iCategory } from "../interfaces";
-import createCategoryService from "../services/category/category.services";
+import createCategoryService from "../services/category/createCategory.services";
 import listCategoriesService from "../services/category/listCategories.services";
 
 const createCategoryController = async (
