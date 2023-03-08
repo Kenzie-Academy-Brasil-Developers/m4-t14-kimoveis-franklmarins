@@ -4,7 +4,7 @@ import { AppError } from "../../error";
 import { iRealEstateRepository } from "../../interfaces";
 
 const listSchedulesService = async (realEstateId: number) => {
-  // const scheduleRepository = AppDataSource.getRepository(Schedule);
+  const scheduleRepository = AppDataSource.getRepository(Schedule);
   const realEstateRepository: iRealEstateRepository =
     AppDataSource.getRepository(RealEstate);
 
@@ -16,9 +16,21 @@ const listSchedulesService = async (realEstateId: number) => {
     throw new AppError("RealEstate not found", 404);
   }
 
-  // const findSchedule = await scheduleRepository.findBy({ id: scheduleId });
+  const listByRealEstateId = await realEstateRepository
+    .createQueryBuilder("realEstate")
+    .leftJoinAndSelect("realEstate.category", "category")
+    .leftJoinAndSelect("realEstate.address", "address")
+    .leftJoinAndSelect("realEstate.schedule", "schedule")
+    .leftJoinAndSelect("schedule.user", "user")
+    .where("realEstate.id = :id", { id: realEstateId })
+    .getOne();
 
-  return;
+  const newlistByRealEstateId = {
+    ...listByRealEstateId,
+    schedules: listByRealEstateId!.schedule,
+  };
+  delete newlistByRealEstateId.schedule;
+  return listByRealEstateId;
 };
 
 export default listSchedulesService;
