@@ -1,14 +1,10 @@
-import { hashSync } from "bcryptjs";
 import { z } from "zod";
 
 const createUserSchema = z.object({
   name: z.string().max(45),
   email: z.string().email().max(45),
   admin: z.boolean().default(false),
-  password: z
-    .string()
-    .max(120)
-    .transform((password) => hashSync(password, 10)),
+  password: z.string().max(120),
 });
 
 const returnUserSchema = createUserSchema
@@ -24,11 +20,7 @@ const updateUserSchema = z.object({
   name: z.string().max(45).optional(),
   email: z.string().email().max(45).optional(),
   admin: z.boolean().default(false).optional(),
-  password: z
-    .string()
-    .max(120)
-    .transform((password) => hashSync(password, 10))
-    .optional(),
+  password: z.string().max(120).optional(),
 });
 
 const returnArrayUsersSchema = returnUserSchema.array();
