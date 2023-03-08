@@ -1,7 +1,6 @@
 import { AppDataSource } from "../../data-source";
 import { RealEstate } from "../../entities";
 import { iRealEstateRepository, iRealEstatesReturn } from "../../interfaces";
-import { returnArrayRealEstateSchema } from "../../schemas/realEstate.schema";
 
 const listRealEstateService = async (): Promise<iRealEstatesReturn> => {
   const realEstateRepository: iRealEstateRepository =
@@ -13,9 +12,27 @@ const listRealEstateService = async (): Promise<iRealEstatesReturn> => {
     },
   });
 
-  const realEstate = returnArrayRealEstateSchema.parse(findRealEstate);
+  const newRealEstate = findRealEstate.map((value) => {
+    const newArr = {
+      sold: value.sold,
+      id: value.id,
+      value: Number(value.value),
+      size: value.size,
+      createdAt: value.createdAt,
+      updatedAt: value.updatedAt,
+      address: {
+        id: value.address!.id,
+        street: value.address!.street,
+        zipCode: value.address!.zipCode,
+        number: value.address!.number,
+        city: value.address!.city,
+        state: value.address!.state,
+      },
+    };
+    return newArr;
+  });
 
-  return realEstate;
+  return newRealEstate;
 };
 
 export default listRealEstateService;
