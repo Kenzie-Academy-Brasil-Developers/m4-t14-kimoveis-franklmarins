@@ -1,7 +1,7 @@
 import { AppDataSource } from "../../data-source";
 import { Category } from "../../entities";
 import { AppError } from "../../error";
-import { iCategoryRepository, iRealEstateByCategory } from "../../interfaces";
+import { iCategoryRepository } from "../../interfaces";
 
 const listCategoryByRealEstate = async (
   categoryId: number

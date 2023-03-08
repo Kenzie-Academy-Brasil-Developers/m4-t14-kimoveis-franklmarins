@@ -4,6 +4,7 @@ import {
   Entity,
   JoinColumn,
   ManyToOne,
+  OneToMany,
   OneToOne,
   PrimaryGeneratedColumn,
   UpdateDateColumn,
@@ -11,6 +12,7 @@ import {
 
 import { Address } from "./address.entity";
 import { Category } from "./category.entity";
+import { Schedule } from "./schedule.entity";
 
 @Entity("real_estate")
 export class RealEstate {
@@ -40,4 +42,7 @@ export class RealEstate {
     nullable: true,
   })
   category: Category | null;
+
+  @OneToMany(() => Schedule, (schedule) => schedule.realEstate)
+  schedule: Schedule;
 }

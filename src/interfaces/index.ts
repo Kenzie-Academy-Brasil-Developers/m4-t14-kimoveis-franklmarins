@@ -19,6 +19,11 @@ import {
   iRealEstatesReturn,
   iRealEstateRepository,
 } from "./realEstate.interfaces";
+import {
+  iSchedule,
+  iScheduleReturn,
+  iSCheduleRepository,
+} from "./schedule.interfaces";
 
 export {
   iUser,
@@ -36,4 +41,7 @@ export {
   iRealEstateReturn,
   iRealEstatesReturn,
   iRealEstateRepository,
+  iSchedule,
+  iScheduleReturn,
+  iSCheduleRepository,
 };
