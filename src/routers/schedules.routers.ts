@@ -17,6 +17,11 @@ schedulesRouters.post(
   createScheduleController
 );
 
-schedulesRouters.get("/realEstate/:id", listSchedulesController);
+schedulesRouters.get(
+  "/realEstate/:id",
+  assureTokeIsValidMiddleware,
+  assureAdminIsTrueMiddleware,
+  listSchedulesController
+);
 
 export default schedulesRouters;
