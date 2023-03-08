@@ -30,7 +30,7 @@ const listSchedulesService = async (realEstateId: number) => {
     schedules: listByRealEstateId!.schedule,
   };
   delete newlistByRealEstateId.schedule;
-  return listByRealEstateId;
+  return newlistByRealEstateId;
 };
 
 export default listSchedulesService;
