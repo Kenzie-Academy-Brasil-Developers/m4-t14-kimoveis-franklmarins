@@ -10,5 +10,5 @@ export class Category {
   name: string;
 
   @OneToMany(() => RealEstate, (realEstate) => realEstate.category)
-  realEstate: RealEstate;
+  realEstate: RealEstate[];
 }

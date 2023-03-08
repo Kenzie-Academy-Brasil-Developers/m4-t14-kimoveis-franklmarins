@@ -9,7 +9,7 @@ const returnCategorySchema = createCategorySchema.extend({
   id: z.number(),
 });
 
-const returnCategoryByRealEstates = createCategorySchema.extend({
+const returnCategoryByRealEstates = returnCategorySchema.extend({
   realEstate: returnRealEstateSchemaArray.array(),
 });
 

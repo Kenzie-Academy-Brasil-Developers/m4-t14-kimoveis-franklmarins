@@ -2,40 +2,68 @@ import { AppDataSource } from "../../data-source";
 import { Category } from "../../entities";
 import { AppError } from "../../error";
 import { iCategoryRepository, iRealEstateByCategory } from "../../interfaces";
-import { returnCategoryByRealEstates } from "../../schemas/category.schema";
 
 const listCategoryByRealEstate = async (
   categoryId: number
-): Promise<iRealEstateByCategory> => {
+): Promise<{
+  id: number;
+  name: string;
+  realEstate: {
+    value: number | string;
+    id: number;
+    size: number;
+    sold: boolean;
+    createdAt: string;
+    updatedAt: string;
+  }[];
+}> => {
   const categoryRepository: iCategoryRepository =
     AppDataSource.getRepository(Category);
 
-  const findRealEstateByCategory = await categoryRepository.find({
+  const findRealEstateByCategory = await categoryRepository.findOne({
     where: { id: categoryId },
-    relations: {
-      realEstate: true,
-    },
   });
 
-  // const postsTags = await AppDataSource.createQueryBuilder(Post, 'posts').
-  //   innerJoinAndSelect('posts.tags', 'tags_posts').
-  //   innerJoinAndSelect('tags_posts.tag', 'tags').
-  //   where('posts.id = :postId', {postId}).
-  //   getOne()
-
-  if (findRealEstateByCategory.length === 0) {
+  if (!findRealEstateByCategory) {
     throw new AppError("Category not found", 404);
   }
-  console.log({
-    name: findRealEstateByCategory[0].name,
-    realEstate: findRealEstateByCategory[0].realEstate,
-  });
-  const RealEstatesByCategory = returnCategoryByRealEstates.parse({
-    name: findRealEstateByCategory[0].name,
-    realEstate: findRealEstateByCategory[0].realEstate,
+
+  const categoryAndRealEstates = await categoryRepository
+    .createQueryBuilder("category")
+    .leftJoinAndSelect("category.realEstate", "realEstate")
+    .where("category.id = :categoryId", { categoryId })
+    .getOne();
+
+  const realEstates = categoryAndRealEstates?.realEstate.map((value) => {
+    const newArr = {
+      createdAt: value.createdAt,
+      id: value.id,
+      size: value.size,
+      sold: value.sold,
+      updatedAt: value.updatedAt,
+      value: value.value,
+    };
+    return newArr;
   });
 
-  return RealEstatesByCategory;
+  const CategoryAndRealEstates: {
+    id: number;
+    name: string;
+    realEstate: {
+      value: number | string;
+      id: number;
+      size: number;
+      sold: boolean;
+      createdAt: string;
+      updatedAt: string;
+    }[];
+  } = {
+    id: categoryAndRealEstates!.id,
+    name: categoryAndRealEstates!.name,
+    realEstate: realEstates!,
+  };
+
+  return CategoryAndRealEstates;
 };
 
 export default listCategoryByRealEstate;

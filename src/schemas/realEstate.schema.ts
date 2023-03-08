@@ -21,6 +21,7 @@ const returnRealEstateSchema = z.object({
 });
 
 const returnRealEstateSchemaArray = returnRealEstateSchema.omit({
+  address: true,
   category: true,
 });
 
